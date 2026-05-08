@@ -165,58 +165,45 @@ theme_override_colors/font_color = Color(0.2, 0.6, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "PULL ALL FILES"
 
-[node name="Explorer" type="MarginContainer" parent="MainVBox/Tabs"]
+[node name="File Manager" type="MarginContainer" parent="MainVBox/Tabs"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 
-[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Explorer"]
+[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/File Manager"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HViewOps" type="HBoxContainer" parent="MainVBox/Tabs/Explorer/V"]
+[node name="HViewOps" type="HBoxContainer" parent="MainVBox/Tabs/File Manager/V"]
 layout_mode = 2
 
-[node name="BtnViewLocal" type="Button" parent="MainVBox/Tabs/Explorer/V/HViewOps"]
+[node name="BtnViewLocal" type="Button" parent="MainVBox/Tabs/File Manager/V/HViewOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "VIEW LOCAL FILES"
 
-[node name="BtnViewRemote" type="Button" parent="MainVBox/Tabs/Explorer/V/HViewOps"]
+[node name="BtnViewRemote" type="Button" parent="MainVBox/Tabs/File Manager/V/HViewOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "VIEW GITHUB FILES"
 
-[node name="InSearch" type="LineEdit" parent="MainVBox/Tabs/Explorer/V"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-placeholder_text = "Search files..."
-
-[node name="FileTree" type="Tree" parent="MainVBox/Tabs/Explorer/V"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-columns = 2
-hide_root = true
-
-[node name="InMsg" type="LineEdit" parent="MainVBox/Tabs/Explorer/V"]
+[node name="InMsg" type="LineEdit" parent="MainVBox/Tabs/File Manager/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Commit message for Push"
 
-[node name="HFileOps" type="HBoxContainer" parent="MainVBox/Tabs/Explorer/V"]
+[node name="HFileOps" type="HBoxContainer" parent="MainVBox/Tabs/File Manager/V"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="BtnPush" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+[node name="BtnPush" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -224,7 +211,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "Push"
 
-[node name="BtnPull" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+[node name="BtnPull" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -232,7 +219,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "Pull"
 
-[node name="BtnRename" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+[node name="BtnRename" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
@@ -240,13 +227,26 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "Rename"
 
-[node name="BtnDel" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+[node name="BtnDel" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "Delete"
+
+[node name="InSearch" type="LineEdit" parent="MainVBox/Tabs/File Manager/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Search files..."
+
+[node name="FileTree" type="Tree" parent="MainVBox/Tabs/File Manager/V"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+hide_root = true
 
 [node name="Pull Requests" type="MarginContainer" parent="MainVBox/Tabs"]
 visible = false
@@ -272,20 +272,25 @@ placeholder_text = "PR Title"
 [node name="HPrBranches" type="HBoxContainer" parent="MainVBox/Tabs/Pull Requests/V"]
 layout_mode = 2
 
-[node name="InPrHead" type="LineEdit" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 60)
+[node name="LabelFrom" type="Label" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
 layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "From Branch"
+text = "From:"
 
-[node name="InPrBase" type="LineEdit" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
+[node name="PrHeadDrop" type="OptionButton" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Into Branch (main)"
-text = "main"
+
+[node name="LabelTo" type="Label" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
+layout_mode = 2
+text = " Into:"
+
+[node name="PrBaseDrop" type="OptionButton" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BtnCreatePR" type="Button" parent="MainVBox/Tabs/Pull Requests/V"]
 unique_name_in_owner = true
