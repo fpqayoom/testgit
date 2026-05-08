@@ -71,14 +71,12 @@ func delete_branch(branch: String) -> Dictionary:
 	var res = await api_request("/git/refs/heads/" + branch, HTTPClient.METHOD_DELETE)
 	return {"success": res.code == 204, "msg": "Branch deleted"}
 
-# --- WHOLE PROJECT PUSH/PULL (GIT DATA API) ---
+# --- WHOLE PROJECT PUSH/PULL ---
 func get_remote_tree(branch: String) -> Dictionary:
-	# 1. Safely get Branch Commit SHA first to prevent GitHub 409 errors
 	var ref_res = await api_request("/git/ref/heads/" + branch, HTTPClient.METHOD_GET)
 	if ref_res.code != 200: return {"success": false, "msg": "Remote branch missing."}
 	var commit_sha = JSON.parse_string(ref_res.body)["object"]["sha"]
 	
-	# 2. Get Tree using the SHA
 	var tree_res = await api_request("/git/trees/" + commit_sha + "?recursive=1", HTTPClient.METHOD_GET)
 	if tree_res.code == 200: return {"success": true, "body": tree_res.body}
 	return {"success": false, "msg": "Failed to load remote tree."}
@@ -161,6 +159,14 @@ func pull_file(local_path: String, branch: String) -> Dictionary:
 		return {"success": true, "msg": "Pulled " + gh_path.get_file()}
 	return {"success": false, "msg": "File not on branch."}
 
+func delete_remote_file(local_path: String, branch: String) -> Dictionary:
+	var gh_path = local_path.replace("res://", "")
+	var get_res = await api_request("/contents/" + gh_path + "?ref=" + branch, HTTPClient.METHOD_GET)
+	if get_res.code != 200: return {"success": false, "msg": "File not on remote."}
+	var sha = JSON.parse_string(get_res.body)["sha"]
+	var res = await api_request("/contents/" + gh_path, HTTPClient.METHOD_DELETE, {"message": "Delete " + gh_path, "sha": sha, "branch": branch})
+	return {"success": res.code == 200, "msg": "Deleted remotely!"}
+
 # --- LOCAL FILE MANAGER OPS ---
 func _get_all_local_files(dir_path: String) -> Array[String]:
 	var list: Array[String] = []
@@ -189,6 +195,12 @@ func local_delete(path: String) -> bool:
 # --- PULL REQUESTS ---
 func get_pull_requests() -> Dictionary:
 	return await api_request("/pulls?state=open", HTTPClient.METHOD_GET)
+
+func create_pull_request(title: String, head: String, base: String) -> Dictionary:
+	var payload = {"title": title, "head": head, "base": base}
+	var res = await api_request("/pulls", HTTPClient.METHOD_POST, payload)
+	if res.code == 201: return {"success": true, "msg": "PR Created Successfully"}
+	else: return {"success": false, "msg": "Failed to create PR. Ensure branches have differences."}
 
 func merge_pull_request(pr_number: int, commit_title: String) -> Dictionary:
 	var payload = {"commit_title": commit_title, "merge_method": "merge"}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://vcs_main_ui_enterprise"]
+[gd_scene load_steps=3 format=3 uid="uid://vcs_main_ui_clean"]
 
 [ext_resource type="Script" path="res://addons/xogot_vcs/main_ui.gd" id="1_script"]
 
@@ -52,177 +52,201 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Config" type="MarginContainer" parent="MainVBox/Tabs"]
+[node name="Setup" type="MarginContainer" parent="MainVBox/Tabs"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 
-[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Config"]
+[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Setup"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="InToken" type="LineEdit" parent="MainVBox/Tabs/Config/V"]
+[node name="InToken" type="LineEdit" parent="MainVBox/Tabs/Setup/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 secret = true
 placeholder_text = "GitHub PAT"
 
-[node name="InOwner" type="LineEdit" parent="MainVBox/Tabs/Config/V"]
+[node name="InOwner" type="LineEdit" parent="MainVBox/Tabs/Setup/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Username"
 
-[node name="InRepo" type="LineEdit" parent="MainVBox/Tabs/Config/V"]
+[node name="InRepo" type="LineEdit" parent="MainVBox/Tabs/Setup/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Repository Name"
 
-[node name="BtnSave" type="Button" parent="MainVBox/Tabs/Config/V"]
+[node name="BtnSave" type="Button" parent="MainVBox/Tabs/Setup/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
 text = "SECURE LOGIN"
 
-[node name="Git Workflow" type="MarginContainer" parent="MainVBox/Tabs"]
+[node name="Git Control" type="MarginContainer" parent="MainVBox/Tabs"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 
-[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Git Workflow"]
+[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Git Control"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HProjectOps" type="HBoxContainer" parent="MainVBox/Tabs/Git Workflow/V"]
+[node name="Label" type="Label" parent="MainVBox/Tabs/Git Control/V"]
 layout_mode = 2
+text = "Branch Management:"
 
-[node name="BtnPushProject" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HProjectOps"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
-text = "PUSH WHOLE PROJECT"
-
-[node name="BtnPullProject" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HProjectOps"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.2, 0.6, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
-text = "PULL WHOLE PROJECT"
-
-[node name="HCommitOps" type="HBoxContainer" parent="MainVBox/Tabs/Git Workflow/V"]
-layout_mode = 2
-
-[node name="BtnPush" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HCommitOps"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
-text = "Push Selected Files"
-
-[node name="BtnPull" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HCommitOps"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 70)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
-text = "Pull Selected Files"
-
-[node name="BranchDrop" type="OptionButton" parent="MainVBox/Tabs/Git Workflow/V"]
+[node name="BranchDrop" type="OptionButton" parent="MainVBox/Tabs/Git Control/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="HBranchOps" type="HBoxContainer" parent="MainVBox/Tabs/Git Workflow/V"]
+[node name="HBranchOps" type="HBoxContainer" parent="MainVBox/Tabs/Git Control/V"]
 layout_mode = 2
 
-[node name="InBranch" type="LineEdit" parent="MainVBox/Tabs/Git Workflow/V/HBranchOps"]
+[node name="InBranch" type="LineEdit" parent="MainVBox/Tabs/Git Control/V/HBranchOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "New Branch Name"
 
-[node name="BtnBranchCreate" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HBranchOps"]
+[node name="BtnBranchCreate" type="Button" parent="MainVBox/Tabs/Git Control/V/HBranchOps"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Create"
 
-[node name="BtnBranchDel" type="Button" parent="MainVBox/Tabs/Git Workflow/V/HBranchOps"]
+[node name="BtnBranchDel" type="Button" parent="MainVBox/Tabs/Git Control/V/HBranchOps"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Delete Dropdown Branch"
+text = "Delete Current"
 
-[node name="InFile" type="LineEdit" parent="MainVBox/Tabs/Git Workflow/V"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 60)
+[node name="Spacer" type="Control" parent="MainVBox/Tabs/Git Control/V"]
+custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
-placeholder_text = "Selected Files"
-editable = false
 
-[node name="InMsg" type="LineEdit" parent="MainVBox/Tabs/Git Workflow/V"]
+[node name="Label2" type="Label" parent="MainVBox/Tabs/Git Control/V"]
+layout_mode = 2
+text = "Project Sync (Current Branch):"
+
+[node name="InProjectMsg" type="LineEdit" parent="MainVBox/Tabs/Git Control/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Commit message"
 
-[node name="File Manager" type="MarginContainer" parent="MainVBox/Tabs"]
+[node name="HProjectOps" type="HBoxContainer" parent="MainVBox/Tabs/Git Control/V"]
+layout_mode = 2
+
+[node name="BtnPushProject" type="Button" parent="MainVBox/Tabs/Git Control/V/HProjectOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.9, 0.4, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "PUSH ALL FILES"
+
+[node name="BtnPullProject" type="Button" parent="MainVBox/Tabs/Git Control/V/HProjectOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.2, 0.6, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "PULL ALL FILES"
+
+[node name="Explorer" type="MarginContainer" parent="MainVBox/Tabs"]
 visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 
-[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/File Manager"]
+[node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Explorer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HFileOps" type="HBoxContainer" parent="MainVBox/Tabs/File Manager/V"]
+[node name="HViewOps" type="HBoxContainer" parent="MainVBox/Tabs/Explorer/V"]
 layout_mode = 2
 
-[node name="BtnLocalRename" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
+[node name="BtnViewLocal" type="Button" parent="MainVBox/Tabs/Explorer/V/HViewOps"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Rename"
+text = "VIEW LOCAL FILES"
 
-[node name="BtnLocalDel" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
+[node name="BtnViewRemote" type="Button" parent="MainVBox/Tabs/Explorer/V/HViewOps"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Delete"
+text = "VIEW GITHUB FILES"
 
-[node name="BtnBrowseRemote" type="Button" parent="MainVBox/Tabs/File Manager/V/HFileOps"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-text = "View Git Files"
-
-[node name="InSearch" type="LineEdit" parent="MainVBox/Tabs/File Manager/V"]
+[node name="InSearch" type="LineEdit" parent="MainVBox/Tabs/Explorer/V"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 placeholder_text = "Search files..."
 
-[node name="FileTree" type="Tree" parent="MainVBox/Tabs/File Manager/V"]
+[node name="FileTree" type="Tree" parent="MainVBox/Tabs/Explorer/V"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+columns = 2
 hide_root = true
+
+[node name="InMsg" type="LineEdit" parent="MainVBox/Tabs/Explorer/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Commit message for Push"
+
+[node name="HFileOps" type="HBoxContainer" parent="MainVBox/Tabs/Explorer/V"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BtnPush" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "Push"
+
+[node name="BtnPull" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "Pull"
+
+[node name="BtnRename" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "Rename"
+
+[node name="BtnDel" type="Button" parent="MainVBox/Tabs/Explorer/V/HFileOps"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "Delete"
 
 [node name="Pull Requests" type="MarginContainer" parent="MainVBox/Tabs"]
 visible = false
@@ -234,6 +258,49 @@ theme_override_constants/margin_right = 15
 [node name="V" type="VBoxContainer" parent="MainVBox/Tabs/Pull Requests"]
 layout_mode = 2
 theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="MainVBox/Tabs/Pull Requests/V"]
+layout_mode = 2
+text = "Create Pull Request:"
+
+[node name="InPrTitle" type="LineEdit" parent="MainVBox/Tabs/Pull Requests/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "PR Title"
+
+[node name="HPrBranches" type="HBoxContainer" parent="MainVBox/Tabs/Pull Requests/V"]
+layout_mode = 2
+
+[node name="InPrHead" type="LineEdit" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "From Branch"
+
+[node name="InPrBase" type="LineEdit" parent="MainVBox/Tabs/Pull Requests/V/HPrBranches"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Into Branch (main)"
+text = "main"
+
+[node name="BtnCreatePR" type="Button" parent="MainVBox/Tabs/Pull Requests/V"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_Btn")
+text = "CREATE PULL REQUEST"
+
+[node name="Spacer" type="Control" parent="MainVBox/Tabs/Pull Requests/V"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MainVBox/Tabs/Pull Requests/V"]
+layout_mode = 2
+text = "Manage PRs:"
 
 [node name="HPrOps" type="HBoxContainer" parent="MainVBox/Tabs/Pull Requests/V"]
 layout_mode = 2
@@ -289,5 +356,3 @@ text = "Processing Heavy Task...
 Do not close the app."
 horizontal_alignment = 1
 vertical_alignment = 1
-
-
