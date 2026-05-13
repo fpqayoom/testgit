@@ -1,0 +1,749 @@
+[gd_scene load_steps=3 format=3 uid="uid://c34kd75hsi2ok"]
+
+[ext_resource type="Script" uid="uid://bp78jos054xwn" path="res://addons/qugit/scripts/ui.gd" id="1_ui"]
+[ext_resource type="Script" uid="uid://bboq1kaew0pcf" path="res://addons/qugit/scripts/api.gd" id="2_api"]
+
+[node name="QugitPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ui")
+
+[node name="API" type="Node" parent="."]
+script = ExtResource("2_api")
+
+[node name="Root" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="Root"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="TokenLabel" type="Label" parent="Root/Header"]
+layout_mode = 2
+text = "Token:"
+
+[node name="TokenInput" type="LineEdit" parent="Root/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "ghp_xxx"
+secret = true
+
+[node name="ConnectBtn" type="Button" parent="Root/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Connect"
+
+[node name="RateLabel" type="Label" parent="Root/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "API: -- left"
+
+[node name="StatusLabel" type="Label" parent="Root"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+text = "Enter token and click Connect"
+
+[node name="Tabs" type="TabContainer" parent="Root"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="Repos" type="HSplitContainer" parent="Root/Tabs"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ReposLeft" type="VBoxContainer" parent="Root/Tabs/Repos"]
+layout_mode = 2
+
+[node name="RepoSearch" type="LineEdit" parent="Root/Tabs/Repos/ReposLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Search or leave blank"
+
+[node name="RepoSearchBtn" type="Button" parent="Root/Tabs/Repos/ReposLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Go"
+
+[node name="RepoList" type="ItemList" parent="Root/Tabs/Repos/ReposLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PageRow" type="HBoxContainer" parent="Root/Tabs/Repos/ReposLeft"]
+layout_mode = 2
+alignment = 1
+
+[node name="RepoPrev" type="Button" parent="Root/Tabs/Repos/ReposLeft/PageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< Prev"
+
+[node name="RepoPageLbl" type="Label" parent="Root/Tabs/Repos/ReposLeft/PageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Page 1"
+
+[node name="RepoNext" type="Button" parent="Root/Tabs/Repos/ReposLeft/PageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next >"
+
+[node name="ReposRight" type="VBoxContainer" parent="Root/Tabs/Repos"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RepoDetail" type="RichTextLabel" parent="Root/Tabs/Repos/ReposRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Select a repo"
+
+[node name="NewRepoSep" type="HSeparator" parent="Root/Tabs/Repos/ReposRight"]
+layout_mode = 2
+
+[node name="NewRepoLbl" type="Label" parent="Root/Tabs/Repos/ReposRight"]
+layout_mode = 2
+text = "Create Repo"
+
+[node name="NewRepoName" type="LineEdit" parent="Root/Tabs/Repos/ReposRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Repo name"
+
+[node name="NewRepoDesc" type="LineEdit" parent="Root/Tabs/Repos/ReposRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Description"
+
+[node name="NewRepoPriv" type="CheckBox" parent="Root/Tabs/Repos/ReposRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Private"
+
+[node name="NewRepoBtn" type="Button" parent="Root/Tabs/Repos/ReposRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Repo"
+
+[node name="Branches" type="HSplitContainer" parent="Root/Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="BrLeft" type="VBoxContainer" parent="Root/Tabs/Branches"]
+layout_mode = 2
+
+[node name="BrRepoPickLbl" type="Label" parent="Root/Tabs/Branches/BrLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="BrRepoPick" type="OptionButton" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BrOwnerLbl" type="Label" parent="Root/Tabs/Branches/BrLeft"]
+layout_mode = 2
+text = "Owner:"
+
+[node name="BrOwner" type="LineEdit" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BrRepoLbl" type="Label" parent="Root/Tabs/Branches/BrLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="BrRepo" type="LineEdit" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BrFetchBtn" type="Button" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load Branches"
+
+[node name="BrList" type="ItemList" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BrDeleteBtn" type="Button" parent="Root/Tabs/Branches/BrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delete Branch"
+
+[node name="BrRight" type="VBoxContainer" parent="Root/Tabs/Branches"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateBrLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "Create Branch"
+
+[node name="BrNewNameLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "New branch:"
+
+[node name="BrNewName" type="LineEdit" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "feature/xxx"
+
+[node name="BrFromLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "From:"
+
+[node name="BrFrom" type="OptionButton" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BrCreateBtn" type="Button" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Branch"
+
+[node name="MergeLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "Merge Branches"
+
+[node name="MergeBaseLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "Into (base):"
+
+[node name="MergeBase" type="OptionButton" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MergeHeadLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "From (head):"
+
+[node name="MergeHead" type="OptionButton" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MergeMsgLbl" type="Label" parent="Root/Tabs/Branches/BrRight"]
+layout_mode = 2
+text = "Message:"
+
+[node name="MergeMsg" type="LineEdit" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Merge message"
+
+[node name="MergeBtn" type="Button" parent="Root/Tabs/Branches/BrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Merge"
+
+[node name="Files" type="HSplitContainer" parent="Root/Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="FilesLeft" type="VBoxContainer" parent="Root/Tabs/Files"]
+layout_mode = 2
+
+[node name="FileRepoPickLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="FileRepoPick" type="OptionButton" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileOwnerLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+layout_mode = 2
+text = "Owner:"
+
+[node name="FileOwner" type="LineEdit" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileRepoLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="FileRepo" type="LineEdit" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileBranchLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+layout_mode = 2
+text = "Branch:"
+
+[node name="FileBranch" type="OptionButton" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileLoadBtn" type="Button" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Browse Remote Files"
+
+[node name="ScanBtn" type="Button" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Scan Local Folder"
+
+[node name="FileModeTabs" type="TabBar" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+current_tab = 0
+tab_count = 3
+tab_0/title = "Files"
+tab_1/title = "Queue"
+tab_2/title = "Ignored"
+
+[node name="FileTree" type="ItemList" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IgnoreLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 files | 0 ignored | 0 queued"
+
+[node name="LocalPathLbl" type="Label" parent="Root/Tabs/Files/FilesLeft"]
+layout_mode = 2
+text = "Local path:"
+
+[node name="LocalPath" type="LineEdit" parent="Root/Tabs/Files/FilesLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "res://"
+
+[node name="FilesRight" type="VBoxContainer" parent="Root/Tabs/Files"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightTabs" type="TabBar" parent="Root/Tabs/Files/FilesRight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+current_tab = 0
+tab_count = 2
+tab_0/title = "Content"
+tab_1/title = "Queue"
+
+[node name="FilePathLbl" type="Label" parent="Root/Tabs/Files/FilesRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "No file selected"
+
+[node name="FileContent" type="CodeEdit" parent="Root/Tabs/Files/FilesRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="QueueList" type="ItemList" parent="Root/Tabs/Files/FilesRight"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PushRow" type="HBoxContainer" parent="Root/Tabs/Files/FilesRight"]
+layout_mode = 2
+
+[node name="PushMsg" type="LineEdit" parent="Root/Tabs/Files/FilesRight/PushRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Commit message"
+
+[node name="PushBtn" type="Button" parent="Root/Tabs/Files/FilesRight/PushRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Push"
+
+[node name="PullBtn" type="Button" parent="Root/Tabs/Files/FilesRight/PushRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Pull"
+
+[node name="PushActionRow" type="HBoxContainer" parent="Root/Tabs/Files/FilesRight"]
+layout_mode = 2
+
+[node name="PushSelBtn" type="Button" parent="Root/Tabs/Files/FilesRight/PushActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Push Selected"
+
+[node name="PushMultiBtn" type="Button" parent="Root/Tabs/Files/FilesRight/PushActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Push All"
+
+[node name="IgnorePanel" type="VBoxContainer" parent="Root/Tabs/Files/FilesRight"]
+visible = false
+layout_mode = 2
+
+[node name="IgnoreLblPanel" type="Label" parent="Root/Tabs/Files/FilesRight/IgnorePanel"]
+layout_mode = 2
+text = "Ignored files (tap to view)"
+
+[node name="IgnoredList" type="ItemList" parent="Root/Tabs/Files/FilesRight/IgnorePanel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IgnoreAddRow" type="HBoxContainer" parent="Root/Tabs/Files/FilesRight/IgnorePanel"]
+layout_mode = 2
+
+[node name="IgnoreAddInput" type="LineEdit" parent="Root/Tabs/Files/FilesRight/IgnorePanel/IgnoreAddRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = ".png or assets/"
+
+[node name="IgnoreAddBtn" type="Button" parent="Root/Tabs/Files/FilesRight/IgnorePanel/IgnoreAddRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Add"
+
+[node name="ToggleIgnoredBtn" type="Button" parent="Root/Tabs/Files/FilesRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "View Ignored"
+
+[node name="Commits" type="HSplitContainer" parent="Root/Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="CmLeft" type="VBoxContainer" parent="Root/Tabs/Commits"]
+layout_mode = 2
+
+[node name="CmRepoPickLbl" type="Label" parent="Root/Tabs/Commits/CmLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="CmRepoPick" type="OptionButton" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CmOwnerLbl" type="Label" parent="Root/Tabs/Commits/CmLeft"]
+layout_mode = 2
+text = "Owner:"
+
+[node name="CmOwner" type="LineEdit" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CmRepoLbl" type="Label" parent="Root/Tabs/Commits/CmLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="CmRepo" type="LineEdit" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CmBranchLbl" type="Label" parent="Root/Tabs/Commits/CmLeft"]
+layout_mode = 2
+text = "Branch:"
+
+[node name="CmBranch" type="LineEdit" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "main"
+
+[node name="CmFetchBtn" type="Button" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load Commits"
+
+[node name="CmList" type="ItemList" parent="Root/Tabs/Commits/CmLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CmPageRow" type="HBoxContainer" parent="Root/Tabs/Commits/CmLeft"]
+layout_mode = 2
+alignment = 1
+
+[node name="CmPrev" type="Button" parent="Root/Tabs/Commits/CmLeft/CmPageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< Prev"
+
+[node name="CmNext" type="Button" parent="Root/Tabs/Commits/CmLeft/CmPageRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Next >"
+
+[node name="CmRight" type="VSplitContainer" parent="Root/Tabs/Commits"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CmDetail" type="RichTextLabel" parent="Root/Tabs/Commits/CmRight"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "Select commit"
+
+[node name="DiffView" type="CodeEdit" parent="Root/Tabs/Commits/CmRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+editable = false
+
+[node name="PullRequests" type="HSplitContainer" parent="Root/Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="PrLeft" type="VBoxContainer" parent="Root/Tabs/PullRequests"]
+layout_mode = 2
+
+[node name="PrRepoPickLbl" type="Label" parent="Root/Tabs/PullRequests/PrLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="PrRepoPick" type="OptionButton" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrOwnerLbl" type="Label" parent="Root/Tabs/PullRequests/PrLeft"]
+layout_mode = 2
+text = "Owner:"
+
+[node name="PrOwner" type="LineEdit" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrRepoLbl" type="Label" parent="Root/Tabs/PullRequests/PrLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="PrRepo" type="LineEdit" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PrStateLbl" type="Label" parent="Root/Tabs/PullRequests/PrLeft"]
+layout_mode = 2
+text = "State:"
+
+[node name="PrStateOpt" type="OptionButton" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Open"
+popup/item_0/id = 0
+popup/item_1/text = "Closed"
+popup/item_1/id = 1
+popup/item_2/text = "All"
+popup/item_2/id = 2
+
+[node name="PrFetchBtn" type="Button" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load PRs"
+
+[node name="PrList" type="ItemList" parent="Root/Tabs/PullRequests/PrLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PrActionRow" type="HBoxContainer" parent="Root/Tabs/PullRequests/PrLeft"]
+layout_mode = 2
+
+[node name="PrMergeBtn" type="Button" parent="Root/Tabs/PullRequests/PrLeft/PrActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Merge PR"
+
+[node name="PrCloseBtn" type="Button" parent="Root/Tabs/PullRequests/PrLeft/PrActionRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Close PR"
+
+[node name="PrRight" type="VBoxContainer" parent="Root/Tabs/PullRequests"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PrDetail" type="RichTextLabel" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Select PR"
+
+[node name="PrCreateSep" type="HSeparator" parent="Root/Tabs/PullRequests/PrRight"]
+layout_mode = 2
+
+[node name="PrCreateLbl" type="Label" parent="Root/Tabs/PullRequests/PrRight"]
+layout_mode = 2
+text = "Create PR"
+
+[node name="PrTitleLbl" type="Label" parent="Root/Tabs/PullRequests/PrRight"]
+layout_mode = 2
+text = "Title:"
+
+[node name="PrTitle" type="LineEdit" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "PR title"
+
+[node name="PrHeadLbl" type="Label" parent="Root/Tabs/PullRequests/PrRight"]
+layout_mode = 2
+text = "Head:"
+
+[node name="PrHead" type="LineEdit" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "feature/xxx"
+
+[node name="PrBaseLbl" type="Label" parent="Root/Tabs/PullRequests/PrRight"]
+layout_mode = 2
+text = "Base:"
+
+[node name="PrBase" type="LineEdit" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "main"
+
+[node name="PrBody" type="TextEdit" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Description"
+
+[node name="PrCreateBtn" type="Button" parent="Root/Tabs/PullRequests/PrRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create PR"
+
+[node name="Issues" type="HSplitContainer" parent="Root/Tabs"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="IsLeft" type="VBoxContainer" parent="Root/Tabs/Issues"]
+layout_mode = 2
+
+[node name="IsRepoPickLbl" type="Label" parent="Root/Tabs/Issues/IsLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="IsRepoPick" type="OptionButton" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IsOwnerLbl" type="Label" parent="Root/Tabs/Issues/IsLeft"]
+layout_mode = 2
+text = "Owner:"
+
+[node name="IsOwner" type="LineEdit" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IsRepoLbl" type="Label" parent="Root/Tabs/Issues/IsLeft"]
+layout_mode = 2
+text = "Repo:"
+
+[node name="IsRepo" type="LineEdit" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IsStateLbl" type="Label" parent="Root/Tabs/Issues/IsLeft"]
+layout_mode = 2
+text = "State:"
+
+[node name="IsStateOpt" type="OptionButton" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Open"
+popup/item_0/id = 0
+popup/item_1/text = "Closed"
+popup/item_1/id = 1
+popup/item_2/text = "All"
+popup/item_2/id = 2
+
+[node name="IsFetchBtn" type="Button" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Load Issues"
+
+[node name="IsList" type="ItemList" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="IsCloseBtn" type="Button" parent="Root/Tabs/Issues/IsLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Close Issue"
+
+[node name="IsRight" type="VBoxContainer" parent="Root/Tabs/Issues"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IsDetail" type="RichTextLabel" parent="Root/Tabs/Issues/IsRight"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Select issue"
+
+[node name="IsCreateSep" type="HSeparator" parent="Root/Tabs/Issues/IsRight"]
+layout_mode = 2
+
+[node name="IsCreateLbl" type="Label" parent="Root/Tabs/Issues/IsRight"]
+layout_mode = 2
+text = "Create Issue"
+
+[node name="IsTitleLbl" type="Label" parent="Root/Tabs/Issues/IsRight"]
+layout_mode = 2
+text = "Title:"
+
+[node name="IsTitle" type="LineEdit" parent="Root/Tabs/Issues/IsRight"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Issue title"
+
+[node name="IsBody" type="TextEdit" parent="Root/Tabs/Issues/IsRight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+placeholder_text = "Description"
+
+[node name="IsCreateBtn" type="Button" parent="Root/Tabs/Issues/IsRight"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Create Issue"

@@ -1,0 +1,136 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="SoogeSam"
+config/version="1.0.0"
+run/main_scene="res://Levels/level_1/level_1.tscn"
+config/features=PackedStringArray("4.5", "Mobile")
+run/max_fps=60
+boot_splash/bg_color=Color(-0.014192514, 0.061856247, -0.0049590855, 0.60310423)
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=720
+window/size/borderless=true
+window/size/always_on_top=true
+window/size/transparent=true
+window/size/extend_to_title=true
+window/size/no_focus=true
+window/size/sharp_corners=true
+window/size/minimize_disabled=true
+window/size/maximize_disabled=true
+window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/qugit/plugin.cfg")
+
+[input]
+
+jump={
+"deadzone": 0.5,
+"events": Array[InputEvent]([Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+])
+}
+down={
+"deadzone": 0.5,
+"events": Array[InputEvent]([Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
+])
+}
+
+[input_devices]
+
+virtual_controller/ios/enable_controller=true
+
+[layer_names]
+
+2d_navigation/layer_1="ground"
+2d_navigation/layer_2="one_way_platfrom"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+
+[xogot]
+
+project/breakpoints={
+"res://Player/player.gd": PackedInt32Array(),
+"res://Player/states/jump.gd": PackedInt32Array(),
+"res://Player/states/player_state_base.gd": PackedInt32Array(),
+"res://addons/qugit/scripts/ui.gd": PackedInt32Array()
+}
+project/editorState=[{
+"column": 0,
+"line": 6,
+"path": "res://Player/states/player_state_base.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 84,
+"path": "res://Player/player.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 6,
+"path": "res://Player/states/idle.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 6,
+"path": "res://Player/states/run.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 10,
+"path": "res://Player/states/crouch.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 89,
+"path": "res://Player/states/state_breadcrumbs.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 3,
+"path": "res://Player/states/fall.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 9,
+"path": "res://Player/states/jump.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 102,
+"path": "res://addons/tile_helper/plugin.gd",
+"type": "file"
+}, {
+"column": 2,
+"line": 205,
+"path": "res://addons/qugit/scripts/api.gd",
+"type": "file"
+}, {
+"column": 21,
+"line": 20,
+"path": "res://addons/qugit/scripts/plugin.gd",
+"type": "file"
+}, {
+"column": 0,
+"current": true,
+"line": 596,
+"path": "res://addons/qugit/scripts/ui.gd",
+"type": "file"
+}]
+project/disabled_breakpoints={}

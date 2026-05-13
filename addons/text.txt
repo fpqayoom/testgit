@@ -1,0 +1,101 @@
+@tool
+extends EditorPlugin
+
+var main_control: Control
+var tabs: TabContainer
+
+func _enter_tree():
+	# Create the main container
+	main_control = VBoxContainer.new()
+	main_control.custom_minimum_size = Vector2(0, 300) # Ensure it has height for mobile
+	
+	# Following your reference design in image_27.png
+	tabs = TabContainer.new()
+	tabs.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	tabs.tab_alignment = TabBar.ALIGNMENT_LEFT
+	
+	# Style it to look like your image
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.15, 0.17, 0.2) # Dark slate/grey from your image
+	tabs.add_theme_stylebox_override("panel", style)
+	
+	main_control.add_child(tabs)
+	
+	# Build the functional tabs
+	_add_tilemap_tab()
+	_add_tileset_tab()
+	_add_utility_tab()
+	
+	# Add it to the bottom panel alongside Debugger and Animation
+	add_control_to_bottom_panel(main_control, "Tile Station")
+
+func _exit_tree():
+	if main_control:
+		remove_control_from_bottom_panel(main_control)
+		main_control.queue_free()
+
+func _add_tilemap_tab():
+	var map_v = VBoxContainer.new()
+	map_v.name = "TileMap"
+	tabs.add_child(map_v)
+	
+	var grid = GridContainer.new()
+	grid.columns = 3 # More buttons per row for mobile landscape
+	grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	grid.add_theme_constant_override("h_separation", 10)
+	grid.add_theme_constant_override("v_separation", 10)
+	map_v.add_child(grid)
+	
+	grid.add_child(_btn("PAINT", Color.DARK_GREEN))
+	grid.add_child(_btn("ERASE", Color.DARK_RED))
+	grid.add_child(_btn("PICK", Color.DARK_CYAN))
+	grid.add_child(_btn("RECT", Color.GOLDENROD))
+	grid.add_child(_btn("BUCKET", Color.DARK_MAGENTA))
+
+func _add_tileset_tab():
+	var set_v = VBoxContainer.new()
+	set_v.name = "TileSet"
+	tabs.add_child(set_v)
+	
+	var grid = GridContainer.new()
+	grid.columns = 3
+	grid.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	set_v.add_child(grid)
+	
+	grid.add_child(_btn("PHYSICS", Color.REBECCA_PURPLE))
+	grid.add_child(_btn("TERRAIN", Color.SIENNA))
+	grid.add_child(_btn("ATLAS", Color.TEAL))
+	grid.add_child(_btn("DATA", Color.DARK_SLATE_GRAY))
+
+func _add_utility_tab():
+	var util_v = VBoxContainer.new()
+	util_v.name = "Setup"
+	tabs.add_child(util_v)
+	
+	var clean_btn = _btn("CLEAN NATIVE UI", Color(0.3, 0.3, 0.3))
+	clean_btn.pressed.connect(_aggressive_clean)
+	util_v.add_child(clean_btn)
+
+func _btn(txt: String, col: Color) -> Button:
+	var b = Button.new()
+	b.text = txt
+	b.custom_minimum_size = Vector2(0, 80) # Large for fingers
+	b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	var style = StyleBoxFlat.new()
+	style.bg_color = col.darkened(0.4)
+	style.border_width_bottom = 4
+	style.border_color = col
+	b.add_theme_stylebox_override("normal", style)
+	return b
+
+func _aggressive_clean():
+	# Hide the native, messy bottom panels that overlap
+	var base = EditorInterface.get_base_control()
+	_hide_native_recursive(base)
+
+func _hide_native_recursive(node: Node):
+	for child in node.get_children():
+		if "TileMapEditor" in child.get_class() or "TileSetEditor" in child.get_class():
+			child.visible = false
+		_hide_native_recursive(child)
